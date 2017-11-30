@@ -22,7 +22,7 @@ class PokeCard extends Component {
             cache: true,
             success: function(data){
                 this.setState({imgUrl: data.sprites.front_default}),
-                this.setState({loading: "iris"}),
+                this.setState({loading: "loaded"}),
                 this.setState({name: data.name})
             }.bind(this),
                 
@@ -50,7 +50,7 @@ class PokeCard extends Component {
 
     render() {
         let cardDiv;
-        if(this.state.loadingDiv="iris"){
+        if(this.state.loadingDiv="loaded"){
             cardDiv =
             <div>         
             <div className={this.state.loading}>

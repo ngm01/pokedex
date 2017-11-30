@@ -24,7 +24,7 @@ class Detail extends Component {
         pokeInfo = <div id="pokeInfo">
         <p>{this.capitalizeFirst(this.props.pokeDetail.name)}</p>
         <p>
-            <div class="iris"><img src={this.props.pokeDetail.sprites.front_default} alt={this.props.pokeDetail.name}/></div></p>
+            <div class="loaded"><img src={this.props.pokeDetail.sprites.front_default} alt={this.props.pokeDetail.name}/></div></p>
         <p>Weight: {this.props.pokeDetail.weight} kg</p>
         <p>Ability: {this.capitalizeFirst(this.props.pokeDetail.abilities[0].ability.name)}</p>
         </div>
