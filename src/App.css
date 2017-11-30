@@ -1,7 +1,11 @@
 .App{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-gap: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #F4F4F4;
 }
 
 body{
@@ -9,11 +13,56 @@ body{
   background-color:#f4f4f4;
 }
 
-.PokeCard{
+/* .iris{
+  position: relative;
+  right: 5px;
   width: 100px;
   background-color: red;
   border-radius: 50%;
   margin: 10px;
+  transition: width 0.3s, height 0.3
+} */
+
+
+.PokeCard{
+  width: 150px;
+  height: 200px;
+  padding: 20px;
+  background-color: #263238;
+  margin: 5px;
+  transition: 0.3s;
+  box-shadow: 0 0px 0px 0 #EF5350;
+  text-align: center;
+  font-size: 20px;
+}
+
+.PokeCard:hover{
+  box-shadow: 4px 4px 8px 0px #EF5350;
+}
+
+.PokeCard p{
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.iris img{
+  border: 2px solid red;
+}
+
+
+.loadingImg{
+  margin-left: 20px;
+  z-index: 1;
+  border: 30px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 30px solid red;
+  border-left: 30px solid red;
+  background-color: black;
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
 
 .Detail{
@@ -23,21 +72,16 @@ body{
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #263238;
   overflow: hidden;
-  opacity: .6;
+  opacity: .8;
   transition: 0.3s;
   padding-top: 60px;
-  white-space: nowrap
+  white-space: nowrap;
+  text-align: center;
+  font-size: 18px;
 }
 
-.Detail p{
-  padding: 10px 10px 10px 30px;
-  font-size: 18px;
-  color: #ccc;
-  display: block;
-  transition: 0.3s;
-}
 
 .Detail .close-detail{
   position: absolute;
@@ -49,18 +93,56 @@ body{
   color: white;
 }
 
+.Detail .close-detail:hover{
+  color: gray;
+}
+
 .Pokedex{
-  padding:20px;
-  overflow:hidden;
-  width:800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  grid-area: content;
+  padding-right:20px;
+  margin-right: 400px;
+  overflow:auto;
+  z-index: 0;
+  width: auto;
+  position: relative;
+}
+
+.Navbar{
+  grid-area: sidebar;
+  position: fixed;
+  width: 400px;
+  right: 0px;
+  background-color: #EF5350;
+  height: 100%;
+}
+
+#header{
+  text-align: center;
+  color: #F4F4F4;
+}
+
+.Navbar a {
+  color: #F4F4F4;
+  background-color: #353e42;
+  padding: 10px;
+  padding-top: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0px 0px lightcoral;
+}
+
+.Navbar a:hover{
+  background-color: #f3f3f3;
+  color: black;
 }
 
 .spinner-small {
   position: relative;
-  left: 90px;
+  left: 100px;
   top: -10px;
   border: 10px solid #f3f3f3;
   border-radius: 50%;
@@ -86,10 +168,43 @@ body{
 
 #pokeGrid{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 img{
-  background-color:#f4f4f4;
+  position: relative;
+  left: 2px;
+  top: 2px;
+  background-color:#F4F4F4;
   border-radius: 50%;
+}
+
+@media (max-width:1400px) {
+  #pokeGrid{
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .Navbar {
+    width: 300px;
+  }
+  .Pokedex {
+    margin-right: 300px;
+  }
+}
+
+@media (max-width:1120px) {
+  #pokeGrid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width:920px) {
+  #pokeGrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:710px) {
+  #pokeGrid{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -7,6 +7,10 @@ class Detail extends Component {
         this.props.hideDetail();
     }
 
+    capitalizeFirst(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     render() {
     let pokeInfo;
     let divWidth;
@@ -17,7 +21,13 @@ class Detail extends Component {
         divWidth = 0;
     }
     if(this.props.pokeDetail.name !== undefined){
-        pokeInfo = <p>{this.props.pokeDetail.name} weighs {this.props.pokeDetail.weight} kg.</p>
+        pokeInfo = <div id="pokeInfo">
+        <p>{this.capitalizeFirst(this.props.pokeDetail.name)}</p>
+        <p>
+            <div class="iris"><img src={this.props.pokeDetail.sprites.front_default} alt={this.props.pokeDetail.name}/></div></p>
+        <p>Weight: {this.props.pokeDetail.weight} kg</p>
+        <p>Ability: {this.capitalizeFirst(this.props.pokeDetail.abilities[0].ability.name)}</p>
+        </div>
     }
     else
     {

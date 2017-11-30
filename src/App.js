@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Pokedex from './components/Pokedex';
 import Detail from './components/Detail';
+import Navbar from './components/Navbar';
 import './App.css';
 
 class App extends Component {
@@ -101,6 +102,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         <Detail pokeDetail={this.state.pokeDetail} show={this.state.show} hideDetail={this.detailHider.bind(this)}/>
         <Pokedex pokemon={this.state.pokemon.results} showDetail={this.detailGetter.bind(this)}  increaseCount={this.counter.bind(this)}/>
       </div>

@@ -8,18 +8,22 @@ class PokeCard extends Component {
     constructor(){
         super();
         this.state = {
-            imgUrl: ""
+            imgUrl: "",
+            name: "",
+            loadingDiv: "loadingImg"
         }
     }
     
     getImg(){
+        this.setState({loading: "loadingImg"});
         $.ajax({
             url: this.props.pokemon.url,
             dataType: 'json',
             cache: true,
             success: function(data){
                 this.setState({imgUrl: data.sprites.front_default}),
-                this.countIncrease()
+                this.setState({loading: "iris"}),
+                this.setState({name: data.name})
             }.bind(this),
                 
             error: function(xhr, status, err){
@@ -40,12 +44,31 @@ class PokeCard extends Component {
         this.getImg();
     }
 
-    render() {
+    capitalizeFirst(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
+    render() {
+        let cardDiv;
+        if(this.state.loadingDiv="iris"){
+            cardDiv =
+            <div>         
+            <div className={this.state.loading}>
+                <img src={this.state.imgUrl} alt={this.state.name}/>
+            </div>
+            <p>{this.capitalizeFirst(this.state.name)}</p>
+            </div>
+        }
+        else{
+            cardDiv =  
+            <div>
+            <div className={this.state.loading}></div>
+            <p>Loading...</p>
+            </div>
+        }
     return (
-      <div className="PokeCard">
-        {/* <legend>{this.props.pokemon.name}</legend> */}
-        <img onClick={this.detailClick.bind(this, this.props.pokemon.url)} src={this.state.imgUrl} alt={this.props.pokemon.name}/>
+      <div className="PokeCard" onClick={this.detailClick.bind(this, this.props.pokemon.url)}>
+        {cardDiv}
       </div>
     );
   }

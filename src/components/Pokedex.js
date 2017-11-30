@@ -23,8 +23,6 @@ class Pokedex extends Component {
     }
     return(
         <div id="pokedex" className="Pokedex">
-            <h1>Welcome to the Pokédex.</h1>
-            <h2>For detailed information on a pokémon, click it's image.</h2>
             <div id="pokeGrid">
             {pokemonList}
             </div>
